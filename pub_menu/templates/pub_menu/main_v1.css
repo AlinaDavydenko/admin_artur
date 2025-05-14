@@ -1,0 +1,376 @@
+/* Reset and box-sizing */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
+
+@font-face {
+  font-family: 'menu_section_h2';
+  src: url("{% static 'fonts/ReSquare_Regular.ttf' %}") format('truetype');
+  }
+
+  @font-face {
+    font-family: 'bayer_pub_header';
+     src: url("{% static 'fonts/WrathofKings_Regular.ttf' %}") format('truetype');
+    }
+
+
+/* Body */
+body {
+  font-family: 'Montserrat', sans-serif;
+  background: linear-gradient(135deg, #1f2937 0%, #111827 100%);
+  color: #e0e7ff;
+  min-height: 100vh;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  user-select: none;
+  overflow-x: hidden;
+  transition: background 0.3s ease;
+  position: relative;
+}
+
+
+
+
+.item_desc {
+ font-size: 0.75rem;
+}
+
+/* Container for better max width */
+.container {
+  width: 100%;
+  max-width: 720px;
+}
+
+/* Header */
+header {
+  text-align: center;
+ /* margin-bottom: 2.5rem;*/
+  position: relative;
+  z-index: 2; /* above gradient effect */
+}
+
+.logo {
+  text-align: center;
+  margin-bottom: 0px;
+}
+
+.logo img {
+  max-width: 180px;
+  height: auto;
+  border-radius: 12px;
+
+}
+
+/* Show highlight and slight scale on hover */
+
+
+
+/* Main heading */
+h1 {
+  font-weight: 400;
+  font-size: 2.75rem;
+  letter-spacing: 0.06em;
+  margin-bottom: 0.75rem;
+  margin-top: -15px;
+  color: #af2f18;
+  font-family: 'bayer_pub_header', sans-serif;
+  letter-spacing: 0.10em;
+}
+
+/* Menu Section */
+.menu-section {
+  background: linear-gradient(145deg, #111827 0%, #1f2937 100%);
+  border-radius: 0.75rem;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.7);
+  padding: 1.5rem 1.25rem;
+  margin-bottom: 2rem;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Section heading */
+.menu-section h2 {
+  font-weight: 700;
+  font-size: 2.0rem;
+  margin-bottom: 1rem;
+  background: linear-gradient(90deg, #8b5cf6, #6366f1);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  letter-spacing: 0.05em;
+  border-bottom: 2px solid #6366f1;
+  padding-bottom: 0.25rem;
+  user-select: text;
+  font-family: 'menu_section_h2', sans-serif;
+}
+
+/* Menu Items container */
+.menu-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 0;
+  padding-left: 0.35rem;
+  padding-right: 0.35rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  transition: background 0.25s ease, transform 0.3s ease;
+  cursor: default;
+  position: relative;
+  z-index: 2;
+  font-size: 0.9rem;
+}
+
+/* Last item - no border */
+.menu-item:last-child {
+  border-bottom: none;
+}
+
+/* Hover effect */
+.menu-item:hover {
+  background: rgba(99, 102, 241, 0.15);
+  transform: translateX(8px);
+  box-shadow: 0 5px 15px rgba(99, 102, 241, 0.3);
+  border-radius: 0.5rem;
+}
+
+/* Item Name */
+.menu-item span:first-child {
+  font-weight: 600;
+  font-size: 1.125rem;
+  color: #cbd5e1;
+  flex-shrink: 1;
+}
+
+/* Price */
+.price {
+  font-weight: 450;
+  font-size: 0.8rem;
+  color: #a5b4fc;
+  white-space: nowrap;
+  user-select: text;
+  transition: color 0.3s ease;
+}
+
+.price_volume {
+  display: flex;
+gap: 0.5rem;
+  align-items: flex-end; /* vertically aligns the items */
+}
+
+/* Price */
+.volume {
+  font-weight: 450;
+  font-size: 0.75rem;
+  color: #a5b4fc;
+  white-space: nowrap;
+  user-select: text;
+  transition: color 0.3s ease;
+  border-left: solid;
+  border-width: 1px;
+  padding-left: 10px;
+}
+
+
+.menu-item:hover .price {
+  color: #8b5cf6;
+}
+
+/* Footer */
+footer {
+  margin-top: 3rem;
+  font-size: 0.9rem;
+  color: #a1a1aa;
+  user-select: none;
+  text-align: center;
+  z-index: 2;
+  position: relative;
+}
+
+/* Responsive: Stack menu items vertically on smaller */
+@media (max-width: 600px) {
+  body {
+    padding: 1rem;
+  }
+
+  .container {
+    max-width: 100%;
+  }
+
+  .menu-item {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 0.75rem 0;
+    transform: none !important; /* prevent hover translate on mobile */
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    padding-left: 0.35rem;
+    padding-right: 0.35rem;
+  }
+
+  .menu-item:last-child {
+    border-bottom: none;
+  }
+
+  .price {
+    margin-top: 0.35rem;
+  }
+}
+
+
+
+/* Smaller gradient accent on each menu-item on hover */
+.menu-item::before {
+  content: '';
+  position: absolute;
+  pointer-events: none;
+  top: 50%;
+  left: var(--item-mouse-x, 50%);
+  width: 160px;
+  height: 120px;
+  background: radial-gradient(circle at center, rgba(99, 102, 241, 0.15), transparent 70%);
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  filter: blur(25px);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  z-index: 0;
+  will-change: transform, opacity;
+}
+
+.menu-item:hover::before {
+  opacity: 1;
+}
+
+/* Hide horizontal scrollbar if any */
+body::-webkit-scrollbar {
+  display: none;
+}
+body {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+
+/* Анимации для сворачивания/разворачивания */
+.menu-section {
+  transition: all 0.5s ease, opacity 0.5s ease, transform 0.5s ease;
+}
+
+.menu-section.collapsed .items-container {
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+}
+
+.items-container {
+  max-height: 2000px;
+  opacity: 1;
+  transition: max-height 0.5s ease, opacity 0.3s ease;
+}
+
+/* Курсор-указатель для заголовков секций */
+.menu-section h2 {
+  cursor: pointer;
+  user-select: none;
+}
+
+/* Курсор-указатель для свернутых секций */
+.menu-section.collapsed {
+  cursor: pointer;
+  user-select: none;
+}
+
+
+
+
+
+/* Modal styles */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(31, 41, 55, 0.2); /* 80% прозрачность */
+  backdrop-filter: blur(5px);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.modal-overlay.active {
+  display: flex;
+  opacity: 1;
+}
+
+.modal-card {
+  background: linear-gradient(145deg, #111827 0%, #1f2937 100%);
+  border-radius: 0.75rem;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+  overflow: hidden;
+  max-width: 400px;
+  width: 0;
+  height: 0;
+  opacity: 0;
+  transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  position: relative;
+}
+
+.modal-overlay.active .modal-card {
+  width: 80%;
+  height: auto;
+  opacity: 1;
+}
+
+.modal-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.modal-content {
+  padding: 1.5rem;
+  text-align: center;
+}
+
+.modal-content h3 {
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+  color: #e0e7ff;
+}
+
+.modal-content p {
+  font-size: 0.9rem;
+  color: #a5b4fc;
+  margin-bottom: 1rem;
+}
+
+.modal-price-volume {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  font-size: 1.1rem;
+  color: #8b5cf6;
+}
+
+/* Dim other content when modal is active */
+body.modal-active {
+  overflow: hidden;
+}
+
+body.modal-active main,
+body.modal-active header,
+body.modal-active footer,
+body.modal-active h1 {
+  opacity: 0.2;
+  transition: opacity 0.3s ease;
+}

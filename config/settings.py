@@ -12,6 +12,12 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 
 from pathlib import Path
 
+import os
+
+from dotenv import load_dotenv
+
+load_dotenv()
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -37,6 +43,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'menu',
+    'pub_menu'
 ]
 
 MIDDLEWARE = [
@@ -73,9 +81,13 @@ WSGI_APPLICATION = 'config.wsgi.application'
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+     'default': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': os.getenv('NAME_'),
+        'USER': os.getenv('USER_'),
+        'PASSWORD': os.getenv('PASSWORD_'),
+        'HOST': os.getenv('HOST_'),
+        'PORT': '5432'
     }
 }
 
@@ -116,7 +128,28 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 
+STATICFILES_DIRS = [
+    BASE_DIR / "pub_menu/templates/pub_menu/",  # Путь к вашим статическим файлам
+]
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+MEDIA_URL = 'media/'
+
+MEDIA_ROOT = os.path.join(BASE_DIR / 'media')
+
+# AUTH_USER_MODEL = 'users.User'
+
+LOGIN_REDIRECT_URL = '/'
+
+LOGOUT_REDIRECT_URL = '/'
+
+EMAIL_HOST = os.getenv('EMAIL_HOST_')
+EMAIL_PORT = os.getenv('EMAIL_PORT_')
+EMAIL_HOST_USER = os.getenv('EMAIL_HOST_USER_')
+EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD_')  # пароль приложения
+EMAIL_USE_TLS = os.getenv('EMAIL_USE_TLS_')
+EMAIL_USE_SSL = os.getenv('EMAIL_USE_SSL_')

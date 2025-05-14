@@ -1,0 +1,60 @@
+{% extends 'menu/base.html'%}
+{% block content %}
+  <section class="py-5 text-center container">
+    <div class="row py-lg-5">
+      <div class="col-lg-6 col-md-8 mx-auto">
+
+        <!-- Форма поиска -->
+
+
+      </div>
+    </div>
+  </section>
+
+<div class="album py-5 bg-body-tertiary">
+    <div class="container">
+
+      <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+
+        <table class="table">
+
+  <thead>
+
+    <tr>
+      <th scope="col">id блюда</th>
+      <th scope="col">Название</th>
+      <th scope="col">Описание</th>
+      <th scope="col">Стоимость</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        {{ object.id }}
+      </td>
+      <td>
+        {{ object.name }}
+      </td>
+      <td>
+        {{ object.description }}
+      </td>
+      <td>
+        {{ object.price }}
+      </td>
+      <td>
+        {{ object.volume }}
+      </td>
+      <td>
+        {{ object.image }}
+      </td>
+    </tr>
+  </tbody>
+</table>
+        <a href="{% url 'menu:dish_update' dish.pk %}" class="btn btn-outline-success">Редактировать</a>
+        <a href="{% url 'menu:dish_delete' dish.pk %}" class="btn btn-outline-danger">Удалить</a>
+      </div>
+      <a href="{% url 'menu:category_list' %}" class="btn btn-outline-success">К категориям</a>
+      <a href="{% url 'menu:menu_list' %}" class="btn btn-outline-warning">К списку блюд</a>
+    </div>
+  </div>
+{% endblock %}

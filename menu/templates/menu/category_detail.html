@@ -1,10 +1,48 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
-</head>
-<body>
-$END$
-</body>
-</html>
+{% extends 'menu/base.html'%}
+{% block content %}
+  <section class="py-5 text-center container">
+    <div class="row py-lg-5">
+      <div class="col-lg-6 col-md-8 mx-auto">
+        <h1 class="fw-light">Блюда категории {{ category.name }}</h1>
+      </div>
+    </div>
+  </section>
+
+<div class="album py-5 bg-body-tertiary">
+    <div class="container">
+
+      <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+
+        <table class="table">
+  <thead>
+    <tr>
+      <th scope="col">id блюда</th>
+      <th scope="col">Название</th>
+      <th scope="col">Описание</th>
+      <th scope="col">Стоимость</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for dish in category.dishes.all %}
+    <tr>
+       <td><a href="{% url 'menu:dish_detail' dish.pk %}">{{ dish.id }}</a></td>
+      <td>
+        {{ dish.name }}
+      </td>
+      <td>
+        {{ dish.description }}
+      </td>
+      <td>
+        {{ dish.price }}
+      </td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+<a href="{% url 'menu:category_update' category.pk %}" class="btn btn-outline-success">Редактировать категорию</a>
+      </div>
+      <a href="{% url 'menu:category_list' %}" class="btn btn-outline-success">К категориям</a>
+      <a href="{% url 'menu:category_delete' category.pk %}" class="btn btn-outline-danger">Удалить</a>
+    </div>
+  </div>
+{% endblock %}

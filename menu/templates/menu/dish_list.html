@@ -1,0 +1,60 @@
+{% extends 'menu/base.html'%}
+{% block content %}
+  <section class="py-5 text-center container">
+    <div class="row py-lg-5">
+      <div class="col-lg-6 col-md-8 mx-auto">
+        <h1 class="fw-light">Блюда</h1>
+
+
+      </div>
+    </div>
+  </section>
+
+<div class="album py-5 bg-body-tertiary">
+    <div class="container">
+
+      <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+
+        <table class="table">
+  <thead>
+    <tr>
+      <th scope="col">id блюда</th>
+      <th scope="col">Название</th>
+      <th scope="col">Описание</th>
+      <th scope="col">Стоимость</th>
+      <th scope="col">Объем/вес</th>
+      <th scope="col">Изображение</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for dish in object_list %}
+    <tr>
+      <td>
+       <a href="{% url 'menu:dish_detail' dish.pk %}">{{ dish.id }}</a>
+      </td>
+      <td>
+        {{ dish.name }}
+      </td>
+      <td>
+        {{ dish.description }}
+      </td>
+      <td>
+        {{ dish.price }}
+      </td>
+      <td>
+        {{ dish.volume }}
+      </td>
+      <td>
+        {{ dish.image }}
+      </td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+
+      </div>
+      <a href="{% url 'menu:category_list' %}" class="btn btn-outline-success">К категориям</a>
+    </div>
+  </div>
+{% endblock %}
